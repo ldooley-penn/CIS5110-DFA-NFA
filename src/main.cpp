@@ -70,7 +70,9 @@ int main(int, char**){
         {10}
     );
 
+    std::cout << "--- Testing Simple NFA to DFA Conversion ---\n";
     RunTest(simpleNfa);
 
+    std::cout << "\n--- Testing Complex NFA to DFA Conversion ---\n";
     RunTest(complexNfa);
 }

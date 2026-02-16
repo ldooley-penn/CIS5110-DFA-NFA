@@ -7,6 +7,8 @@ transition table, start state, and final states. See src/main.cpp for example.
 If you don't have c++ build tools, this is the output from running the program as is:
 
 ```
+--- Testing Simple NFA to DFA Conversion ---
+
 Testing NFA:
 Word: 'abb' Result: Accepted
 Word: 'aabb' Result: Accepted
@@ -42,6 +44,8 @@ DFA Information
         Start State: 0
         Final States: {3, }
 
+--- Testing Complex NFA to DFA Conversion ---
+
 Testing NFA:
 Word: 'abb' Result: Accepted
 Word: 'aabb' Result: Accepted
@@ -54,16 +58,11 @@ Testing DFA:
 Word: 'abb' Result: Accepted
 Word: 'aabb' Result: Accepted
 Word: 'ab' Result: Rejected
-Word: 'ab' Result: Rejected
-Word: 'aabbb' Result: Rejected
 Word: 'aabbb' Result: Rejected
 Word: 'babb' Result: Accepted
 Word: '' Result: Rejected
 
-
 Test results:
-Test results:
-        Success: NFA and DFA results match!
         Success: NFA and DFA results match!
 
 DFA Information
