@@ -6,7 +6,7 @@ DeterministicFiniteAutomaton::DeterministicFiniteAutomaton(const Nondeterministi
     m_states({0}),
     m_alphabet(nfa.m_alphabet),
     m_startState(0),
-    finalStates({})
+    m_finalStates({})
 {
     std::set<int> s0 = nfa.getEpsilonClosure({nfa.m_startState});
     std::map<std::set<int>, int> setToStateMap;
@@ -36,7 +36,7 @@ DeterministicFiniteAutomaton::DeterministicFiniteAutomaton(const Nondeterministi
         std::set<int> stateSet = stateToSetVector[state];
         for(int nfaState : stateSet){
             if(nfa.isStateFinal(nfaState)){
-                finalStates.insert(state);
+                m_finalStates.insert(state);
                 break;
             }
         }
@@ -46,7 +46,7 @@ DeterministicFiniteAutomaton::DeterministicFiniteAutomaton(const Nondeterministi
 std::vector<bool> DeterministicFiniteAutomaton::runTest(std::vector<std::string> testWords) const
 {
     std::vector<bool> results;
-    std::cout << "\nTesting DFA:\n";
+    std::cout << "\n-Testing DFA:-\n";
     for(const std::string& word : testWords){
         results.push_back(isWordAccepted(word));
         if(results[results.size() - 1]){
@@ -69,13 +69,13 @@ bool DeterministicFiniteAutomaton::isWordAccepted(const std::string& word) const
         currentState = transitionRow->second;
     }
 
-    return finalStates.count(currentState) > 0;
+    return m_finalStates.count(currentState) > 0;
 }
 
 void DeterministicFiniteAutomaton::print() const
 { 
     // Print title
-    std::cout << "DFA Information\n";
+    std::cout << "DFA Information:\n";
 
     // Print states
     std::cout <<"\tStates: {";
@@ -105,7 +105,7 @@ void DeterministicFiniteAutomaton::print() const
 
     // Print final states
     std::cout<<"\tFinal States: {";
-    for(int finalState : finalStates){
+    for(int finalState : m_finalStates){
         std::cout << finalState << ", ";
     }
     std::cout << "}\n";

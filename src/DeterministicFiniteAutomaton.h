@@ -17,7 +17,7 @@ struct DeterministicFiniteAutomaton {
         m_alphabet(alphabet),
         m_transitionFunction(transitionFunction),
         m_startState(startState),
-        finalStates(finalStates)
+        m_finalStates(finalStates)
     {
     }
     
@@ -33,5 +33,5 @@ struct DeterministicFiniteAutomaton {
     std::set<char> m_alphabet;
     std::map<std::pair<int, char>, int> m_transitionFunction;
     int m_startState;
-    std::set<int> finalStates;
+    std::set<int> m_finalStates;
 };

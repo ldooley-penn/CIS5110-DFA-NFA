@@ -76,7 +76,7 @@ std::set<int> NondeterministicFiniteAutomaton::evaluateTransitionWithEpsilonClos
 std::vector<bool> NondeterministicFiniteAutomaton::runTest(std::vector<std::string> testWords) const
 {
     std::vector<bool> results;
-    std::cout << "\nTesting NFA:\n";
+    std::cout << "\n-Testing NFA:-\n";
     for(const std::string& word : testWords){
         results.push_back(isWordAccepted(word));
         if(results[results.size() - 1]){
@@ -108,4 +108,47 @@ bool NondeterministicFiniteAutomaton::isWordAccepted(const std::string& word) co
     }
 
     return false;
+}
+
+void NondeterministicFiniteAutomaton::print() const
+{
+    // Print title
+    std::cout << "NFA Information:\n";
+
+    // Print states
+    std::cout << "\tStates: {";
+    for(int state : m_states){
+        std::cout << state << ", ";
+    }
+    std::cout << "}\n";
+
+    // Print alphabet
+    std::cout << "\tAlphabet: {";
+    for(char letter : m_alphabet){
+        std::cout << letter << ", ";
+    }
+    std::cout << "}\n";
+
+    // Print transition function
+    std::cout << "\tTransition Function:\n";
+    for (const auto& transition : m_transitionFunction) {
+        int initialState = transition.first.first;
+        char letter = transition.first.second;
+        const std::set<int>& transitionedStates = transition.second;
+
+        for (int transitionedState : transitionedStates) {
+            std::cout << "\t\t{{" << initialState << ", " << letter << "}, " << transitionedState << "}\n";
+        }
+    }
+    std::cout<< "\n";
+
+    // Print start state
+    std::cout << "\tStart State: " << m_startState << "\n";
+
+    // Print final states
+    std::cout<<"\tFinal States: {";
+    for(int finalState : m_finalStates){
+        std::cout << finalState << ", ";
+    }
+    std::cout << "}\n";
 }

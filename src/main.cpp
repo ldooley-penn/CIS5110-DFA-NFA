@@ -13,21 +13,24 @@ const std::vector<std::string> testWords = {
     };
 
 void RunTest(const NondeterministicFiniteAutomaton& nfa){
-    std::vector<bool> nfaResults = nfa.runTest(testWords);
-
     DeterministicFiniteAutomaton dfaFromNFA(nfa);
 
-    std::vector<bool> dfaResults =dfaFromNFA.runTest(testWords);
+    std::cout<<"--NFA input:--\n";
+    nfa.print();
 
-    std::cout<<"\nTest results:\n";
+    std::cout<<"\n--NFA translated to DFA:--\n";
+    dfaFromNFA.print();
+
+    std::cout<<"\n--Test results:--\n";
+
+    std::vector<bool> nfaResults = nfa.runTest(testWords);
+    std::vector<bool> dfaResults = dfaFromNFA.runTest(testWords);
 
     if(nfaResults != dfaResults){
-        std::cerr << "\tError: NFA and DFA results do not match!\n\n";
+        std::cerr << "\nError: NFA and DFA results do not match!\n\n";
     } else {
-        std::cout << "\tSuccess: NFA and DFA results match!\n\n";
+        std::cout << "\nSuccess: NFA and DFA results match!\n\n";
     }
-
-    dfaFromNFA.print();
 }
 
 

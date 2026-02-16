@@ -34,6 +34,8 @@ struct NondeterministicFiniteAutomaton {
     std::vector<bool> runTest(std::vector<std::string> testWords) const;
     bool isWordAccepted(const std::string& word) const;
 
+    void print() const;
+
     std::vector<int> m_states;
     std::set<char> m_alphabet;
     std::map<std::pair<int, char>, std::set<int>> m_transitionFunction;
